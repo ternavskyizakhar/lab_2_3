@@ -1,11 +1,11 @@
 module Api
   module V1
-    class AccountsController < ApplicationController
+    class AccountsController < ApiController
   before_action :set_account, only: %i[ show update destroy ]
 
   # GET /accounts
   def index
-    @accounts = Account.all
+    @accounts = Account.where(user_id: params[:user_id])
 
     render json: @accounts
   end
@@ -43,12 +43,12 @@ module Api
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_account
-      @account = Account.find(params.expect(:id))
+      @account = Account.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def account_params
-      params.expect(account: [ :Balance, :user_id ])
+      params.require(:account).permit(:balance, :user_id)
     end
     end
   end

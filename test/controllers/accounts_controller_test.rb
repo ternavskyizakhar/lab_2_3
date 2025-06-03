@@ -12,7 +12,7 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create account" do
     assert_difference("Account.count") do
-      post accounts_url, params: { account: { Balance: @account.Balance, user_id: @account.user_id } }, as: :json
+      post accounts_url, params: { account: { balance: @account.balance, user_id: @account.user_id } }, as: :json
     end
 
     assert_response :created
@@ -24,7 +24,7 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update account" do
-    patch account_url(@account), params: { account: { Balance: @account.Balance, user_id: @account.user_id } }, as: :json
+    patch account_url(@account), params: { account: { balance: @account.balance, user_id: @account.user_id } }, as: :json
     assert_response :success
   end
 

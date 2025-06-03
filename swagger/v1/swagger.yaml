@@ -1,0 +1,107 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/accounts":
+    get:
+      summary: Retrieves all accounts for a user
+      tags:
+      - Accounts
+      parameters:
+      - name: user_id
+        in: query
+        description: User ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: accounts retrieved
+    post:
+      summary: Creates an account
+      tags:
+      - Accounts
+      parameters: []
+      responses:
+        '201':
+          description: account created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                balance:
+                  type: number
+                user_id:
+                  type: integer
+              required:
+              - balance
+              - user_id
+  "/api/v1/accounts/{id}":
+    get:
+      summary: Retrieves a specific account
+      tags:
+      - Accounts
+      parameters:
+      - name: id
+        in: path
+        description: Account ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: account retrieved
+        '404':
+          description: account not found
+    put:
+      summary: Updates an account
+      tags:
+      - Accounts
+      parameters:
+      - name: id
+        in: path
+        description: Account ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: account updated
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                balance:
+                  type: number
+              required:
+              - balance
+    delete:
+      summary: Deletes an account
+      tags:
+      - Accounts
+      parameters:
+      - name: id
+        in: path
+        description: Account ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: account deleted
+        '404':
+          description: account not found
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: 127.0.0.1:3000

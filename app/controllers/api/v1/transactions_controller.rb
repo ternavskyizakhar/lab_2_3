@@ -1,11 +1,11 @@
 module Api
   module V1
-    class TransactionsController < ApplicationController
+    class TransactionsController < ApiController
   before_action :set_transaction, only: %i[ show update destroy ]
 
   # GET /transactions
   def index
-    @transactions = Transaction.all
+    Transaction.where("receiver_id = :account_id OR account_id = :account_id", account_id: params[:account_id])
 
     render json: @transactions
   end

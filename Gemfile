@@ -49,3 +49,11 @@ end
 gem "faker", "~> 3.5"
 
 gem "active_model_serializers", "~> 0.10.15"
+
+gem "rspec-rails", "~> 8.0"
+gem "rswag", "~> 2.16"
+gem "shoulda-matchers", "~> 6.5"
+
+gem "activeadmin", "~> 3.3"
+gem "sprockets-rails", "~> 3.5"
+gem "sassc", "~> 2.4"

@@ -4,4 +4,12 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[transactions accounts]
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name email transactions_id created_at updated_at]
+  end
 end
